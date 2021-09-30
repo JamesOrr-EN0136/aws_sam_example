@@ -70,6 +70,29 @@ Resources:
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
 
+
+  deleteRowFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        Handler: src/handlers/deleteItem.deleteItemHandler
+        Runtime: nodejs14.x
+        MemorySize: 128
+        Timeout: 100
+        Description: A simple example includes a HTTP get method to delete one row.
+        Policies:
+          # Give Create/Read/Update/Delete Permissions to the SampleTable
+          - DynamoDBCrudPolicy:
+              TableName: James-table
+        Environment:
+          Variables:
+            # Make table name accessible as environment variable from function code during execution
+            SAMPLE_TABLE: James-table
+        Events:
+          Api:
+            Type: Api
+            Properties:
+              Path: /{id}
+              Method: DELETE
   # This is a Lambda function config associated with the source code: put-item.js
   putItemFunction:
     Type: AWS::Serverless::Function
