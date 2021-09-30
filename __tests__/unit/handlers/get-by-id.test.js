@@ -21,7 +21,7 @@ describe('Test getByIdHandler', () => {
  
     // This test invokes getByIdHandler() and compare the result  
     it('should get item by id', async () => { 
-        const item = { id: 'id1' }; 
+        const item = { Id: '1' , name: "Samantha", sales: 1000}; 
  
         // Return the specified value whenever the spied get function is called 
         getSpy.mockReturnValue({ 
@@ -31,7 +31,7 @@ describe('Test getByIdHandler', () => {
         const event = { 
             httpMethod: 'GET', 
             pathParameters: { 
-                id: 'id1' 
+                id: '1' 
             } 
         } 
  
